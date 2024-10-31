@@ -38,7 +38,6 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/roleTouser").permitAll()
             )
             .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
         
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
