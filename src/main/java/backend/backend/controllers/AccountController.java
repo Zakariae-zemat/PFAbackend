@@ -10,7 +10,6 @@ import backend.backend.entities.User;
 import backend.backend.security.CustomUserDetailsService;
 import backend.backend.security.JwtUtil;
 import backend.backend.services.AccMngImpl;
-
 import java.util.List;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.beans.factory.annotation.Autowired;
