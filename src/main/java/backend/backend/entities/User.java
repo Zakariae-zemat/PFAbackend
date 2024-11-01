@@ -12,6 +12,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -34,27 +35,21 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     List<Role> roles = new ArrayList<>();
     
-
-    public User(String username, String email, String password, List<Role> roles) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "bookmarkedJobs")
+    List<Job> markedJobs = new ArrayList<>();
 
     public User() {
         
     }
 
-   
+    public User(String username, String email, String password, List<Role> roles, List<Job> markedJobs) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.markedJobs = markedJobs;
+    }
 
 
     public int getId() {
@@ -90,6 +85,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Job> getmarkedJobs() {
+        return markedJobs;
+    }
+
+    public void setmarkedJobs(List<Job> markedJobs) {
+        this.markedJobs = markedJobs;
     }
 
 }

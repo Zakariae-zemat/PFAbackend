@@ -34,6 +34,7 @@ public class Job {
     @Column(nullable = false)
     private String category;
 
+
     public String getCreated() {
         return created;
     }
