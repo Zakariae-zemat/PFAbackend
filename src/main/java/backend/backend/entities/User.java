@@ -2,7 +2,9 @@ package backend.backend.entities;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +14,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -36,14 +39,20 @@ public class User {
     List<Role> roles = new ArrayList<>();
     
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "bookmarkedJobs")
-    List<Job> markedJobs = new ArrayList<>();
+    @JoinTable(
+                name = "bookmarkedJobs",
+                joinColumns = @JoinColumn(name = "username"),
+                inverseJoinColumns = @JoinColumn(name = "job_id")
+                )
+    Set<Job> markedJobs = new HashSet<>(){
+        
+    };
 
     public User() {
         
     }
 
-    public User(String username, String email, String password, List<Role> roles, List<Job> markedJobs) {
+    public User(String username, String email, String password, List<Role> roles, Set<Job> markedJobs) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -95,11 +104,11 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Job> getmarkedJobs() {
+    public Set<Job> getmarkedJobs() {
         return markedJobs;
     }
 
-    public void setmarkedJobs(List<Job> markedJobs) {
+    public void setmarkedJobs(Set<Job> markedJobs) {
         this.markedJobs = markedJobs;
     }
 

@@ -1,10 +1,10 @@
 package backend.backend.DTO;
 
-public class RoleUserForm {
+public class BookMarkDTO {
 
     private String username;
     
-    private String rolename;
+    private String jobId;
 
     public String getUsername() {
         return username;
@@ -12,10 +12,10 @@ public class RoleUserForm {
     public void setUsername(String username) {
         this.username = username;
     }
-    public String getRolename() {
-        return rolename;
+    public String getJobId() {
+        return jobId;
     }
-    public void setRolename(String rolename) {
-        this.rolename = rolename;
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
     }
 }

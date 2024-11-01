@@ -36,6 +36,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/register").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/roleTouser").permitAll()
+                .requestMatchers(HttpMethod.POST, "/markJob").authenticated()
+                .requestMatchers(HttpMethod.GET, "/getMarkedJobs").authenticated()
+                .requestMatchers(HttpMethod.DELETE, "/removeBookMark").authenticated()
             )
             .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         
